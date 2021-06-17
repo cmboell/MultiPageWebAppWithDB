@@ -1,0 +1,14 @@
+﻿<!--Delete view (user view)-->
+@model Contact
+@{
+    ViewBag.Title = "Delete Contact";
+}
+
+<h2>Confirm Deletion</h2>
+<h3>@Model.Name (@Model.PhoneNumber)</h3><!--displays name and number of contact on delete page-->
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="ContactId" />
+    <button type="submit" class="btn btn-primary">Delete</button><!--submit button that deletes contact-->
+    <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Cancel</a> <!--cancel button with tag helpers to display home/index view-->
+</form>

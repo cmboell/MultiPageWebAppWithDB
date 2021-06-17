@@ -1,0 +1,41 @@
+﻿<!--edit view page(user view)-->
+@model Contact
+@{
+    string title = ViewBag.Action + " Contact"; <!--uses viewbag action to set text of the title-->
+    ViewBag.Title = title;
+}
+
+<h2>@ViewBag.Title</h2> <!--header for page-->
+<form asp-action="Edit" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <!--labels and input area for fields-->
+    <div class="form-group">
+        <label asp-for="Name">Name</label> 
+        <input asp-for="Name" class="form-control">
+    </div>
+    <div class="form-group">
+        <label asp-for="PhoneNumber">Phone Number</label>
+        <input asp-for="PhoneNumber" class="form-control">
+    </div>
+    <div class="form-group">
+        <label asp-for="Address">Address</label>
+        <input asp-for="Address" class="form-control">
+    </div>
+    <div class="form-group">
+        <label asp-for="RelationshipId">Relationship</label>
+        <select asp-for="RelationshipId" class="form-control">
+            <option value="">select a relationship</option>
+            @foreach (Relationship r in ViewBag.Relationships)
+            {
+                <option value="@r.RelationshipId">@r.Type</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Note">Note</label>
+        <input asp-for="Note" class="form-control">
+    </div>
+    <input type="hidden" asp-for"ContactId" /> <!--bound to hidden field so users can't change this value-->
+    <button type="submit" class="btn btn-primary">@ViewBag.Action</button><!--displays action as submit button-->
+    <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Cancel</a> <!--cancel button with tag helpers to display home/index view-->
+</form>
